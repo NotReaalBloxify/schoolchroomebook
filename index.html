@@ -1,37 +1,820 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>School Chromebook Booster Stuff</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; background-color: #121212; color: #f0f0f0; }
-    header { background: #1e1e1e; padding: 1rem 2rem; text-align: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 2px 10px #000; }
-    nav { display: flex; justify-content: center; background: #222; padding: 0.5rem; gap: 1rem; }
-    nav a { color: #00ff99; text-decoration: none; font-weight: bold; }
-    main { padding: 2rem; max-width: 800px; margin: auto; }
-    footer { text-align: center; padding: 1rem; background: #1a1a1a; color: #888; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chromebook Optimization & Advanced Modifications Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .warning-banner {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid #c0392b;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .warning-banner h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .warning-banner h2::before {
+            content: "⚠️";
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            color: #4a5568;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #2d3748;
+            font-size: 1.4rem;
+            margin: 25px 0 15px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section h3::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .danger-zone {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #c0392b;
+        }
+
+        .danger-zone h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .danger-zone h3::before {
+            content: "🚨";
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .compatibility-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .compatibility-table th,
+        .compatibility-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .compatibility-table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        .compatible {
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        .incompatible {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-top: 50px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+
+        .audio-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 107, 107, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .audio-notification.show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-  <header>School Chromebook Booster Stuff</header>
-  <nav>
-    <a href="fps.html">FPS Boost</a>
-    <a href="wifi.html">Wi-Fi</a>
-    <a href="flags.html">Chrome Flags</a>
-    <a href="blocked.html">Blocked?</a>
-    <a href="about.html">About</a>
-  </nav>
-  <main>
-    <h1>Welcome!</h1>
-    <p>You're on the best site for boosting your school Chromebook — no extensions, just smart tweaks that actually work.</p>
-    <ul>
-      <li>🚀 Increase FPS for games and videos</li>
-      <li>📶 Improve your Wi-Fi connection</li>
-      <li>⚙️ Use Chrome Flags to boost speed</li>
-      <li>🧠 Get around annoying block settings (without breaking rules)</li>
-    </ul>
-  </main>
-  <footer>&copy; 2025 schoolchromebookboosterstuff.com</footer>
+    <div class="audio-notification" id="audioNotification">🔊 Audio Alert</div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Chromebook Optimization Guide</h1>
+            <p>Maximize Performance & Unlock Advanced Features</p>
+        </div>
+
+        <div class="nav-menu">
+            <a href="#optimization">Basic Optimization</a>
+            <a href="#shimmer">Sh1mmer Guide</a>
+            <a href="#writeprotect">Write Protection</a>
+            <a href="#advanced">Advanced Tips</a>
+        </div>
+
+        <div class="warning-banner">
+            <h2>Critical Warning</h2>
+            <p><strong>These modifications can permanently damage your Chromebook and void your warranty.</strong> Proceed only if you understand the risks. School-issued Chromebooks should NOT be modified as this may violate policies and result in disciplinary action.</p>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+                <li>🔒 May void warranty permanently</li>
+                <li>🏫 Could violate school/organization policies</li>
+                <li>⚡ Risk of hardware damage or "bricking"</li>
+                <li>🔄 May prevent future ChromeOS updates</li>
+                <li>🛡️ Could compromise security features</li>
+            </ul>
+        </div>
+
+        <div class="section" id="optimization">
+            <h2>🚀 Basic Chromebook Optimization (Safe Methods)</h2>
+            
+            <h3>System Performance Tweaks</h3>
+            <ol class="step-list">
+                <li><strong>Enable Developer Mode:</strong> Go to Settings > About Chrome OS > Additional Details > Change Channel to Developer (unstable). This enables more advanced settings.</li>
+                <li><strong>Clear System Cache:</strong> Press Ctrl+Shift+Delete, select "All time" and check all boxes to clear browsing data and system cache.</li>
+                <li><strong>Optimize Storage:</strong> Use the built-in Storage Manager in Settings > Device > Storage Management to clean up files.</li>
+                <li><strong>Adjust Power Settings:</strong> Set adaptive brightness off and manage power settings in Settings > Device > Power.</li>
+                <li><strong>Disable Startup Programs:</strong> Go to Settings > Apps > Startup and disable unnecessary programs that launch at boot.</li>
+            </ol>
+
+            <h3>Chrome Browser Optimization</h3>
+            <ol class="step-list">
+                <li><strong>Memory Management:</strong> Type chrome://memory in address bar to monitor memory usage and identify resource-heavy tabs.</li>
+                <li><strong>Enable Hardware Acceleration:</strong> Go to Settings > Advanced > System and ensure "Use hardware acceleration when available" is enabled.</li>
+                <li><strong>Manage Startup Programs:</strong> Disable unnecessary startup programs in Settings > Advanced > Reset and clean up.</li>
+                <li><strong>Optimize Downloads:</strong> Regularly clean Downloads folder and use cloud storage for large files.</li>
+            </ol>
+
+            <h3>Network & Connectivity</h3>
+            <ol class="step-list">
+                <li><strong>DNS Optimization:</strong> Use faster DNS servers like 1.1.1.1 (Cloudflare) or 8.8.8.8 (Google) in network settings.</li>
+                <li><strong>WiFi Optimization:</strong> Forget and reconnect to WiFi networks, prefer 5GHz bands when available.</li>
+                <li><strong>Disable Auto-sync:</strong> Turn off unnecessary sync features in Settings > You and Google > Sync and Google services.</li>
+            </ol>
+        </div>
+
+        <div class="download-section">
+            <h2>📥 Sh1mmer Download Sources</h2>
+            <p>Recovery images and tools for advanced Chromebook modifications</p>
+            <a href="https://drive.google.com/file/d/1BwDI5_vXbreGqCZTR0FIaroxaLqjErn2/view?usp=drive_link" class="download-btn" target="_blank">Download Sh1mmer Package</a>
+            
+            <div style="margin: 30px 0; padding: 20px; background: rgba(255, 255, 255, 0.2); border-radius: 15px;">
+                <h3 style="color: white; margin-bottom: 15px;">🔧 RMA Shims</h3>
+                <p style="margin-bottom: 15px; font-size: 0.9rem; opacity: 0.9;"><em>These are not endorsed by Mercury Workshop</em></p>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <a href="https://cros.download" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #00f2fe, #4facfe); font-size: 0.9rem;">cros.download (recommended)</a>
+                    <a href="https://dl.diffusehyperion.com" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #ffa726, #ff7043); font-size: 0.9rem;">dl.diffusehyperion.com (slow)</a>
+                    <a href="https://archive.org" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #90a4ae, #607d8b); font-size: 0.9rem;">archive.org (outdated)</a>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0; padding: 20px; background: rgba(255, 255, 255, 0.2); border-radius: 15px;">
+                <h3 style="color: white; margin-bottom: 15px;">🌐 Web Builders</h3>
+                <p style="margin-bottom: 15px; font-size: 0.9rem; opacity: 0.9;"><em>These are not hosted by Mercury Workshop</em></p>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <a href="https://darkn.pages.dev/sh1mmer" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #667eea, #764ba2); font-size: 0.9rem;">darkn.pages.dev/sh1mmer (new)</a>
+                    <a href="https://diffusehyperion.com/builder" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #90a4ae, #607d8b); font-size: 0.9rem;">diffusehyperion.com/builder (old)</a>
+                </div>
+            </div>
+            
+            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">⚠️ Only use with compatible Chromebook models</p>
+        </div>
+
+        <div class="danger-zone">
+            <h3>🚨 Before Proceeding with Advanced Modifications</h3>
+            <p><strong>READ THIS CAREFULLY:</strong> The following sections contain advanced modifications that can permanently alter your Chromebook's functionality. These procedures:</p>
+            <ul style="margin: 15px 0; padding-left: 20px;">
+                <li>Will void your warranty</li>
+                <li>May violate school or workplace policies</li>
+                <li>Could result in a non-functional device</li>
+                <li>Require technical expertise to perform safely</li>
+                <li>May prevent you from receiving official ChromeOS updates</li>
+            </ul>
+            <p><strong>Only proceed if you fully understand these risks and have the technical knowledge to recover from potential failures.</strong></p>
+        </div>
+
+        <div class="section" id="shimmer">
+            <h2>🔓 Sh1mmer Guide - Recovery Image Exploitation</h2>
+            
+            <h3>What is Sh1mmer?</h3>
+            <p>Sh1mmer is a ChromeOS recovery image exploit that allows bypassing enrollment restrictions and gaining elevated access to Chromebook systems. It works by exploiting vulnerabilities in the recovery mode process.</p>
+
+            <h3>Compatibility Check</h3>
+            <table class="compatibility-table">
+                <thead>
+                    <tr>
+                        <th>Board Name</th>
+                        <th>Common Models</th>
+                        <th>Compatibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Octopus</td>
+                        <td>Lenovo 100e, ASUS C423, HP 11 G7</td>
+                        <td class="compatible">✓ Compatible</td>
+                    </tr>
+                    <tr>
+                        <td>Grunt</td>
+                        <td>HP 14, Lenovo S330</td>
+                        <td class="compatible">✓ Compatible</td>
+                    </tr>
+                    <tr>
+                        <td>Hatch</td>
+                        <td>Dell Latitude 5400, HP Elite c1030</td>
+                        <td class="compatible">✓ Compatible</td>
+                    </tr>
+                    <tr>
+                        <td>Dedede</td>
+                        <td>Lenovo 3i, ASUS C223</td>
+                        <td class="compatible">✓ Compatible</td>
+                    </tr>
+                    <tr>
+                        <td>Strongbad</td>
+                        <td>ASUS C436, HP Elite c1030</td>
+                        <td class="incompatible">✗ Patched</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Prerequisites</h3>
+            <ol class="step-list">
+                <li><strong>Compatible Chromebook:</strong> Verify your device is compatible using the table above or chrome://version/</li>
+                <li><strong>USB Drive:</strong> 8GB+ USB drive that will be completely wiped</li>
+                <li><strong>Recovery Image:</strong> Download the sh1mmer package from the link above</li>
+                <li><strong>Image Writing Tool:</strong> Chrome Recovery Utility or Rufus</li>
+            </ol>
+
+            <h3>Step-by-Step Process</h3>
+            <ol class="step-list">
+                <li><strong>Prepare USB Drive:</strong> Insert USB drive and open Chrome Recovery Utility. Select "Use a local image" and choose the downloaded sh1mmer file.</li>
+                <li><strong>Enter Recovery Mode:</strong> Power off Chromebook. Hold ESC + Refresh + Power until recovery screen appears.</li>
+                <li><strong>Boot from USB:</strong> Insert the sh1mmer USB and press Ctrl+D when prompted about developer mode.</li>
+                <li><strong>Wait for Exploit:</strong> The sh1mmer exploit will run automatically. DO NOT interrupt this process.</li>
+                <li><strong>Access Shell:</strong> Once complete, you'll have access to a root shell with elevated privileges.</li>
+                <li><strong>Disable Enrollment:</strong> Run the appropriate commands to disable enterprise enrollment (commands vary by device).</li>
+            </ol>
+
+            <div class="code-block">
+# Example commands (vary by device):
+chronos@localhost $ sudo su
+root@localhost # mount -o remount,rw /
+root@localhost # rm /mnt/stateful_partition/.developer_mode
+root@localhost # vpd -s check_enrollment=0
+root@localhost # vpd -s block_devmode=0
+            </div>
+
+            <h3>Post-Exploitation Steps</h3>
+            <ol class="step-list">
+                <li><strong>Remove USB:</strong> Safely remove the sh1mmer USB drive</li>
+                <li><strong>Reboot:</strong> Restart the Chromebook normally</li>
+                <li><strong>Setup ChromeOS:</strong> Go through initial setup process</li>
+                <li><strong>Verify Success:</strong> Check that enrollment restrictions are bypassed</li>
+            </ol>
+        </div>
+
+        <div class="section" id="writeprotect">
+            <h2>🔐 Disabling Write Protection</h2>
+
+            <div class="warning-banner">
+                <h2>Hardware Modification Warning</h2>
+                <p><strong>This process requires physically opening your Chromebook and may permanently damage it.</strong> Only attempt if you have experience with electronics repair.</p>
+            </div>
+
+            <h3>What is Write Protection?</h3>
+            <p>Write protection prevents modifications to the firmware and BIOS. Disabling it allows flashing custom firmware, but requires physical access to the device's hardware.</p>
+
+            <h3>Methods to Disable Write Protection</h3>
+
+            <h4>Method 1: Hardware Screw Removal</h4>
+            <ol class="step-list">
+                <li><strong>Power Off:</strong> Completely shut down and unplug the Chromebook</li>
+                <li><strong>Remove Battery:</strong> Disconnect the internal battery (location varies by model)</li>
+                <li><strong>Locate WP Screw:</strong> Find the write protection screw (usually labeled "WP" on motherboard)</li>
+                <li><strong>Remove Screw:</strong> Carefully remove the write protection screw with appropriate screwdriver</li>
+                <li><strong>Reassemble:</strong> Reconnect battery and close device</li>
+            </ol>
+
+            <h4>Method 2: Jumper Modification</h4>
+            <ol class="step-list">
+                <li><strong>Open Device:</strong> Remove bottom panel following device-specific disassembly guide</li>
+                <li><strong>Locate Jumper:</strong> Find the WP jumper on the motherboard (consult service manual)</li>
+                <li><strong>Bridge Jumper:</strong> Use conductive material to bridge the jumper pins</li>
+                <li><strong>Test:</strong> Boot device and verify write protection is disabled</li>
+            </ol>
+
+            <h3>Verification Commands</h3>
+            <div class="code-block">
+# Check write protection status:
+sudo flashrom -p internal --wp-status
+
+# Disable software write protection:
+sudo flashrom -p internal --wp-disable
+
+# Verify firmware access:
+sudo flashrom -p internal -r firmware_backup.rom
+            </div>
+
+            <h3>Common WP Screw Locations by Model</h3>
+            <table class="compatibility-table">
+                <thead>
+                    <tr>
+                        <th>Model Series</th>
+                        <th>WP Screw Location</th>
+                        <th>Additional Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HP 11 G7/G8</td>
+                        <td>Near WiFi module</td>
+                        <td>Silver screw, remove completely</td>
+                    </tr>
+                    <tr>
+                        <td>Lenovo 100e</td>
+                        <td>Center of motherboard</td>
+                        <td>Black screw with WP marking</td>
+                    </tr>
+                    <tr>
+                        <td>ASUS C423</td>
+                        <td>Left side of motherboard</td>
+                        <td>May require cable removal</td>
+                    </tr>
+                    <tr>
+                        <td>Dell 3100</td>
+                        <td>Near memory slots</td>
+                        <td>Covered by EMI shield</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="advanced">
+            <h2>⚡ Advanced Optimization Tips</h2>
+
+            <h3>Firmware Modifications</h3>
+            <ol class="step-list">
+                <li><strong>Custom Firmware:</strong> Flash custom firmware like MrChromebox's UEFI firmware for full OS compatibility</li>
+                <li><strong>Coreboot Modifications:</strong> Modify coreboot settings for hardware-level optimizations</li>
+                <li><strong>EC Firmware:</strong> Update embedded controller firmware for better power management</li>
+            </ol>
+
+            <h3>Performance Tweaks</h3>
+            <ol class="step-list">
+                <li><strong>CPU Scaling:</strong> Modify CPU governor settings for better performance vs battery life balance</li>
+                <li><strong>Memory Optimization:</strong> Adjust memory allocation and swap settings</li>
+                <li><strong>Storage Optimization:</strong> Enable TRIM support and optimize filesystem parameters</li>
+            </ol>
+
+            <h3>System Monitoring</h3>
+            <div class="code-block">
+# Monitor system performance:
+top -p $(pgrep chrome)
+
+# Check memory usage:
+free -h
+
+# Monitor disk I/O:
+iostat -x 1
+
+# Check temperature:
+cat /sys/class/thermal/thermal_zone*/temp
+            </div>
+
+            <h3>Recovery and Backup</h3>
+            <ol class="step-list">
+                <li><strong>Create Recovery USB:</strong> Always maintain a recovery USB before modifications</li>
+                <li><strong>Backup Firmware:</strong> Save original firmware before any modifications</li>
+                <li><strong>Document Changes:</strong> Keep detailed notes of all modifications made</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Troubleshooting Common Issues</h2>
+
+            <h3>Boot Issues</h3>
+            <p><strong>Chromebook won't boot after modifications:</strong></p>
+            <ol class="step-list">
+                <li>Try recovery mode (ESC + Refresh + Power)</li>
+                <li>Use original recovery USB to restore</li>
+                <li>Check all hardware connections</li>
+                <li>Restore write protection if removed</li>
+            </ol>
+
+            <h3>Performance Issues</h3>
+            <p><strong>System running slower after modifications:</strong></p>
+            <ol class="step-list">
+                <li>Clear all caches and temporary files</li>
+                <li>Revert recent changes one by one</li>
+                <li>Check for overheating issues</li>
+                <li>Verify firmware integrity</li>
+            </ol>
+
+            <h3>Enrollment Issues</h3>
+            <p><strong>Device still shows as enrolled:</strong></p>
+            <ol class="step-list">
+                <li>Verify sh1mmer exploit completed successfully</li>
+                <li>Check VPD settings are correctly modified</li>
+                <li>Perform factory reset if needed</li>
+                <li>Ensure device is not on managed network</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p><strong>Disclaimer:</strong> This guide is for educational purposes only. The author is not responsible for any damage to your device or violations of policies. Always ensure you have proper authorization before modifying any device.</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                ⚠️ Use at your own risk | 🔒 Respect device policies | 🛡️ Always backup before modifications
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Audio system for Re:Zero Return by Death sound
+        let audioInterval;
+        let isAudioEnabled = false;
+        let audioElement;
+
+        // Initialize audio system
+        function initializeAudio() {
+            if (isAudioEnabled) return;
+            
+            // Create hidden iframe to access the sound
+            const hiddenIframe = document.createElement('iframe');
+            hiddenIframe.style.display = 'none';
+            hiddenIframe.style.position = 'absolute';
+            hiddenIframe.style.left = '-9999px';
+            hiddenIframe.style.width = '110px';
+            hiddenIframe.style.height = '200px';
+            hiddenIframe.src = 'https://www.myinstants.com/instant/re-zero-return-by-death-51511/embed/';
+            hiddenIframe.frameBorder = '0';
+            hiddenIframe.scrolling = 'no';
+            
+            document.body.appendChild(hiddenIframe);
+            
+            // Alternative: Create audio element with direct sound URL
+            audioElement = document.createElement('audio');
+            audioElement.preload = 'auto';
+            audioElement.volume = 0.3;
+            
+            // Try to get the direct audio source
+            fetch('https://www.myinstants.com/media/sounds/re-zero-return-by-death.mp3')
+                .then(response => {
+                    if (response.ok) {
+                        audioElement.src = 'https://www.myinstants.com/media/sounds/re-zero-return-by-death.mp3';
+                    } else {
+                        // Fallback to synthetic death sound if direct access fails
+                        createSyntheticDeathSound();
+                    }
+                })
+                .catch(() => {
+                    createSyntheticDeathSound();
+                });
+            
+            isAudioEnabled = true;
+            startAudioInterval();
+        }
+
+        // Create synthetic death sound as fallback
+        function createSyntheticDeathSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const duration = 3.0;
+            const sampleRate = audioContext.sampleRate;
+            const arrayBuffer = audioContext.createBuffer(1, sampleRate * duration, sampleRate);
+            const channelData = arrayBuffer.getChannelData(0);
+            
+            for (let i = 0; i < channelData.length; i++) {
+                const t = i / sampleRate;
+                // Create Re:Zero-style death sound with dramatic effect
+                const frequency1 = 200 * Math.exp(-t * 1.5) + 80;
+                const frequency2 = 400 * Math.exp(-t * 2) + 120;
+                const envelope = Math.exp(-t * 1.8);
+                const tremolo = 1 + 0.3 * Math.sin(2 * Math.PI * 8 * t);
+                
+                channelData[i] = (
+                    Math.sin(2 * Math.PI * frequency1 * t) * envelope * 0.4 * tremolo +
+                    Math.sin(2 * Math.PI * frequency2 * t) * envelope * 0.3 +
+                    (Math.random() - 0.5) * 0.1 * envelope
+                );
+            }
+            
+            // Convert to blob URL for audio element
+            const blob = new Blob([arrayBuffer], { type: 'audio/wav' });
+            audioElement.src = URL.createObjectURL(blob);
+        }
+
+        // Play the death sound
+        function playDeathSound() {
+            if (!isAudioEnabled) return;
+            
+            try {
+                if (audioElement && audioElement.src) {
+                    audioElement.currentTime = 0;
+                    audioElement.play().catch(e => {
+                        console.log('Audio playback failed:', e);
+                        // Try to trigger iframe button click as fallback
+                        triggerIframeAudio();
+                    });
+                } else {
+                    triggerIframeAudio();
+                }
+                
+                showAudioNotification();
+            } catch (error) {
+                console.log('Audio error:', error);
+            }
+        }
+
+        // Trigger audio from hidden iframe
+        function triggerIframeAudio() {
+            const iframe = document.querySelector('iframe[src*="myinstants.com"]');
+            if (iframe) {
+                try {
+                    // Try to access iframe content and trigger button click
+                    iframe.contentWindow.postMessage('play', '*');
+                } catch (e) {
+                    console.log('Iframe access failed:', e);
+                }
+            }
+        }
+
+        // Show audio notification
+        function showAudioNotification() {
+            const notification = document.getElementById('audioNotification');
+            notification.textContent = '🔊 Return by Death...';
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Start the 10-second interval
+        function startAudioInterval() {
+            if (audioInterval) clearInterval(audioInterval);
+            
+            audioInterval = setInterval(() => {
+                playDeathSound();
+            }, 10000);
+        }
+
+        // Initialize audio on first user interaction
+        document.addEventListener('click', initializeAudio, { once: true });
+        document.addEventListener('keydown', initializeAudio, { once: true });
+        document.addEventListener('touchstart', initializeAudio, { once: true });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.section').forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            section.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Warning acknowledgment
+        let warningShown = false;
+        function showWarningOnAdvancedSection() {
+            if (!warningShown) {
+                warningShown = true;
+                alert('⚠️ WARNING: You are about to access advanced modification instructions that can permanently damage your device. Proceed only if you understand the risks.');
+            }
+        }
+
+        // Add click listeners to dangerous sections
+        document.querySelectorAll('#shimmer, #writeprotect').forEach(section => {
+            section.addEventListener('click', showWarningOnAdvancedSection, { once: true });
+        });
+    </script>
 </body>
 </html>
